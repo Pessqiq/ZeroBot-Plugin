@@ -30,11 +30,11 @@ const (
 	referer       = "https://weibo.com/"
 	signinMax     = 1
 	// SCOREMAX 分数上限定为1200
-	SCOREMAX = 1200000
+	SCOREMAX = 1200
 )
 
 var (
-	rankArray = [...]int{0, 10, 20, 50, 100, 200, 350, 550, 750, 1000, 1200000}
+	rankArray = [...]int{0, 10, 20, 50, 100, 200, 350, 550, 750, 1000, 1200}
 	engine    = control.Register("score", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "签到",
@@ -127,7 +127,6 @@ func init() {
 		level := sdb.GetScoreByUID(uid).Score + 1
 		if level > SCOREMAX {
 			level = SCOREMAX
-			ctx.SendChain(message.At(uid), message.Text("你的等级已经达到上限"))
 		}
 		err = sdb.InsertOrUpdateScoreByUID(uid, level)
 		if err != nil {
