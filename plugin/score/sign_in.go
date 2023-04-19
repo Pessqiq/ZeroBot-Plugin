@@ -34,7 +34,7 @@ const (
 )
 
 var (
-	rankArray = [...]int{0, 10, 20, 50, 100, 200, 350, 550, 750, 1000, 1200}
+	rankArray = [...]int{0, 10, 20, 50, 100, 200, 350, 550, 750, 1000, 1200000}
 	engine    = control.Register("score", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault:  false,
 		Brief:             "签到",
