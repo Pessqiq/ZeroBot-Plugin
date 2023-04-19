@@ -21,7 +21,7 @@ import (
 	"github.com/FloatTech/zbputils/img/text"
 	"github.com/golang/freetype"
 	"github.com/wcharczuk/go-chart/v2"
-	zero "github.com/wdvxdr1123/"
+	zero "github.com/wdvxdr1123/ZeroBot"
 	"github.com/wdvxdr1123/ZeroBot/message"
 )
 
@@ -127,6 +127,7 @@ func init() {
 		level := sdb.GetScoreByUID(uid).Score + 1
 		if level > SCOREMAX {
 			level = SCOREMAX
+			ctx.SendChain(message.At(uid), message.Text("你的等级已经达到上限"))
 		}
 		err = sdb.InsertOrUpdateScoreByUID(uid, level)
 		if err != nil {
@@ -178,7 +179,7 @@ func init() {
 		ctx.SendChain(message.Image("file:///" + file.BOTPATH + "/" + drawedFile))
 	})
 
-	engine.OnPrefix("获取签到背景", b.OnlyGroup).Limit(ctxext.LimitByGroup).SetBlock(true).
+	engine.OnPrefix("获得签到背景", zero.OnlyGroup).Limit(ctxext.LimitByGroup).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			param := ctx.State["args"].(string)
 			var uidStr string
