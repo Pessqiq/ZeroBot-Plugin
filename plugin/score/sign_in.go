@@ -30,7 +30,7 @@ const (
 	referer       = "https://weibo.com/"
 	signinMax     = 1
 	// SCOREMAX 分数上限定为1200
-	SCOREMAX = 1200
+	SCOREMAX = 1200000
 )
 
 var (
