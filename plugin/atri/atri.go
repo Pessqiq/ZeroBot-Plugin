@@ -42,14 +42,14 @@ func randText(text ...string) message.MessageSegment {
 // isAtriSleeping 凌晨0点到6点，ATRI 在睡觉，不回应任何请求
 func isAtriSleeping(*zero.Ctx) bool {
 	if now := time.Now().Hour(); now >= 1 && now < 6 {
-		return true
+		return false
 	}
 	return true
 }
 
 func init() { // 插件主体
 	engine := control.Register("atri", &ctrl.Options[*zero.Ctx]{
-		DisableOnDefault: true,
+		DisableOnDefault: false,
 		Brief:            "atri人格文本回复",
 		Help: "本插件基于 ATRI ，为 Golang 移植版\n" +
 			"- ATRI醒醒\n- ATRI睡吧\n- 萝卜子\n- 喜欢 | 爱你 | 爱 | suki | daisuki | すき | 好き | 贴贴 | 老婆 | 亲一个 | mua\n" +
