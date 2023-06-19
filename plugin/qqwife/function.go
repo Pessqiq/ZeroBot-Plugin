@@ -162,7 +162,7 @@ func init() {
 			)
 		})
 	// NTR技能
-	engine.OnRegex(`^当(\[CQ:at,qq=(\d+)\]\s?|(\d+))的小三`, zero.OnlyGroup, getdb, checkMistress).SetBlock(true).Limit(ctxext.LimitByUser).
+	engine.OnRegex(`^NTL(\[CQ:at,qq=(\d+)\]\s?|(\d+))`, zero.OnlyGroup, getdb, checkMistress).SetBlock(true).Limit(ctxext.LimitByUser).
 		Handle(func(ctx *zero.Ctx) {
 			gid := ctx.Event.GroupID
 			uid := ctx.Event.UserID
@@ -182,8 +182,8 @@ func init() {
 				ctx.SendChain(message.Text("[ERROR]:", err))
 				return
 			}
-			if favor < 30 {
-				favor = 30 // 保底10%概率
+			if favor < 100 {
+				favor = 100 // 保底10%概率
 			}
 			if rand.Intn(101) >= favor/3 {
 				ctx.SendChain(message.Text("失败了！可惜"))
