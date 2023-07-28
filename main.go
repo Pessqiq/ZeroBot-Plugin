@@ -187,8 +187,9 @@ import (
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/cloudmusic"    // 网易云热评
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/dice"          // 骰子
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/managerplugin" // 自定义群管插件
-	//_ "github.com/FloatTech/ZeroBot-Plugin/plugin/moehu"         // 图库
-	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/phigros"       // phigros b19
+
+	// _ "github.com/FloatTech/ZeroBot-Plugin/plugin/moehu"         // 图库
+	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/phigros" // phigros b19
 
 	_ "github.com/FloatTech/ZeroBot-Plugin/plugin/antirepeat" // 限制复读
 
@@ -269,8 +270,8 @@ func init() {
 	}
 
 	// 通过代码写死的方式添加主人账号
-	 sus = append(sus, 3012297229)
-	 sus = append(sus, 358595315)
+	sus = append(sus, 3012297229)
+	sus = append(sus, 358595315)
 
 	// 启用 webui
 	// go webctrl.RunGui(*g)
