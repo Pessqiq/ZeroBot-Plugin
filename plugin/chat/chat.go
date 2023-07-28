@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	poke   = rate.NewManager[int64](time.Minute*5, 8) // 戳一戳
+	poke   = rate.NewManager[int64](time.Minute*5, 800) // 戳一戳
 	engine = control.Register("chat", &ctrl.Options[*zero.Ctx]{
 		DisableOnDefault: false,
 		Brief:            "基础反应, 群空调",
@@ -42,7 +42,7 @@ func init() { // 插件主体
 		Handle(func(ctx *zero.Ctx) {
 			var nickname = zero.BotConfig.NickName[0]
 			switch {
-			case poke.Load(ctx.Event.GroupID).AcquireN(3):
+			case poke.Load(ctx.Event.GroupID).AcquireN(2000):
 				// 5分钟共8块命令牌 一次消耗3块命令牌
 				time.Sleep(time.Second * 1)
 				ctx.SendChain(message.Text(
