@@ -127,7 +127,7 @@ func init() {
 		level := sdb.GetScoreByUID(uid).Score + 1
 		if level > SCOREMAX {
 			level = SCOREMAX
-			ctx.SendChain(message.At(uid), message.Text("你的等级已经达到上限"))
+			ctx.SendChain(message.At(uid), message.Text("亲爱的主人你已经满级了喔"))
 		}
 		err = sdb.InsertOrUpdateScoreByUID(uid, level)
 		if err != nil {
@@ -136,7 +136,7 @@ func init() {
 		}
 		// 更新钱包
 		rank := getrank(level)
-		add := 1 + rand.Intn(10) + rank*5 // 等级越高获得的钱越高
+		add := 1 + rand.Intn(10) + rank*50000 // 等级越高获得的钱越高
 		go func() {
 			err = wallet.InsertWalletOf(uid, add)
 			if err != nil {
@@ -179,7 +179,7 @@ func init() {
 		ctx.SendChain(message.Image("file:///" + file.BOTPATH + "/" + drawedFile))
 	})
 
-	engine.OnPrefix("获得签到背景", zero.OnlyGroup).Limit(ctxext.LimitByGroup).SetBlock(true).
+	engine.OnPrefix("获取签到背景", zero.OnlyGroup).Limit(ctxext.LimitByGroup).SetBlock(true).
 		Handle(func(ctx *zero.Ctx) {
 			param := ctx.State["args"].(string)
 			var uidStr string
